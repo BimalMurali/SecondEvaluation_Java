@@ -15,11 +15,12 @@ class Main {
 		Main bank = new Main();
 		Administrator obj = new Administrator();
 		Customer obj1 = new Customer(0, null, null, 0, 0, null, null, 0);
-
+        try {
 		while (true) {
 			int op;
 			System.out.println("Bank Transactions Menu:");
 			System.out.println("1.Admin 2.Customer Enter the option");
+			
 			op = scanner.nextInt();
 			if (op == 1) {
 				System.out.println("Welcome to Admin page ");
@@ -37,6 +38,7 @@ class Main {
 				case 1:
 					System.out.print("Enter Customer Name: ");
 					String name = scanner.nextLine();
+					obj1.getValidCustomerName(name);
 					System.out.print("Enter Account Type (Savings/Current): ");
 					String accountType = scanner.nextLine();
 					System.out.print("Enter Initial Balance: ");
@@ -111,6 +113,7 @@ class Main {
 					System.out.println("Enter the account number:");
 					int ac2 = scanner.nextInt();
 					obj1.showBalance();
+					obj1.getValidBalance(ac2);
 					break;
 
 				case 4:
@@ -121,7 +124,7 @@ class Main {
 					obj1.transferMoney(transfer);
 					bank.admin.displayAllCustomers();
 					break;
-
+				
 				}
 
 			}
@@ -131,5 +134,8 @@ class Main {
 				System.exit(0);
 			}
 		}
+        }catch(Exception e ) {
+        	System.out.println("Enter valid option and the error is :"+e);
+        }
 	}
 }
